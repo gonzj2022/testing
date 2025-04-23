@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 root = Tk()
 root.title("Codemy.com - Card Deck")
-root.iconbitmap("C:\Users/gonzj988/Desktop/New folder/images/brisca.ico")
+root.iconbitmap("C:/Users/gonzj988/Desktop/New folder/images/brisca.ico")
 root.geometry("900x500")
 root.configure(background="green")
 
@@ -27,7 +27,7 @@ def resize_cards(card):
 # Shuffle The Cards
 def shuffle():
 	# Define Our Deck
-	suits = ["diamonds", "clubs", "hearts", "spades"]
+	suits = ["D", "C", "H", "H"]
 	values = range(2, 15)
 	# 11 = Jack, 12=Queen, 13=King, 14 = Ace
 
@@ -51,7 +51,7 @@ def shuffle():
 	dealer.append(card)
 	# Output Card To Screen
 	global dealer_image
-	dealer_image = resize_cards(f'images/cards/{card}.png')
+	dealer_image = resize_cards(f'cards_png_zip/PNG/{card}.png')
 	dealer_label.config(image=dealer_image)
 
 	# Grab a random Card For Player
@@ -62,7 +62,7 @@ def shuffle():
 	player.append(card)
 	# Output Card To Screen
 	global player_image
-	player_image = resize_cards(f'images/cards/{card}.png')
+	player_image = resize_cards(f'cards_png_zip/PNG/{card}.png')
 	player_label.config(image=player_image)
 
 	#player_label.config(text=card)
@@ -82,7 +82,7 @@ def deal_cards():
 		dealer.append(card)
 		# Output Card To Screen
 		global dealer_image
-		dealer_image = resize_cards(f'images/cards/{card}.png')
+		dealer_image = resize_cards(f'cards_png_zip/PNG/{card}.png')
 		dealer_label.config(image=dealer_image)
 		#dealer_label.config(text=card)
 
@@ -94,7 +94,7 @@ def deal_cards():
 		player.append(card)
 		# Output Card To Screen
 		global player_image
-		player_image = resize_cards(f'images/cards/{card}.png')
+		player_image = resize_cards(f'cards_png_zip/PNG/{card}.png')
 		player_label.config(image=player_image)
 		#player_label.config(text=card)
 
