@@ -66,12 +66,32 @@ def shuffle():
 	global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
 	dealer_image1 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_1.config(image=dealer_image1)
+	dealer_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(dealer_card)
+	# Append Card To Dealer List
+	dealer.append(dealer_card)
 	dealer_image2 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_2.config(image=dealer_image2)
+	dealer_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(dealer_card)
+	# Append Card To Dealer List
+	dealer.append(dealer_card)
 	dealer_image3 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_3.config(image=dealer_image3)
+	dealer_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(dealer_card)
+	# Append Card To Dealer List
+	dealer.append(dealer_card)
 	dealer_image4 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_4.config(image=dealer_image4)
+	dealer_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(dealer_card)
+	# Append Card To Dealer List
+	dealer.append(dealer_card)
 	dealer_image5 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_5.config(image=dealer_image5)
 
@@ -85,12 +105,32 @@ def shuffle():
 	global player_image1, player_image2, player_image3, player_image4, player_image5
 	player_image1 = resize_cards(f'Brisca cards/{player_card}.png')
 	player_label_1.config(image=player_image1)
+	player_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(player_card)
+	# Append Card To Dealer List
+	player.append(player_card)
 	player_image2 = resize_cards(f'Brisca cards/{player_card}.png')
 	player_label_2.config(image=player_image2)
+	player_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(player_card)
+	# Append Card To Dealer List
+	player.append(player_card)
 	player_image3 = resize_cards(f'Brisca cards/{player_card}.png')
 	player_label_3.config(image=player_image3)
+	player_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(player_card)
+	# Append Card To Dealer List
+	player.append(player_card)
 	player_image4 = resize_cards(f'Brisca cards/{player_card}.png')
 	player_label_4.config(image=player_image4)
+	player_card = random.choice(deck)
+	# Remove Card From Deck
+	deck.remove(player_card)
+	# Append Card To Dealer List
+	player.append(player_card)
 	player_image5 = resize_cards(f'Brisca cards/{player_card}.png')
 	player_label_5.config(image=player_image5)
 
@@ -113,12 +153,36 @@ def deal_cards():
 		global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
 		dealer_image1 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_1.config(image=dealer_image1)
+		# Get the deler Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		dealer.append(card)
 		dealer_image2 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_2.config(image=dealer_image2)
+		# Get the deler Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		dealer.append(card)
 		dealer_image3 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_3.config(image=dealer_image3)
+		# Get the deler Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		dealer.append(card)
 		dealer_image4 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_4.config(image=dealer_image4)
+		# Get the deler Card
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		dealer.append(card)
 		dealer_image5 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_5.config(image=dealer_image5)
 		#dealer_label.config(text=card)
@@ -133,12 +197,32 @@ def deal_cards():
 		global player_image1, player_image2, player_image3, player_image4, player_image5
 		player_image1 = resize_cards(f'Brisca cards/{card}.png')
 		player_label_1.config(image=player_image1)
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		player.append(card)
 		player_image2 = resize_cards(f'Brisca cards/{card}.png')
 		player_label_2.config(image=player_image2)
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		player.append(card)
 		player_image3 = resize_cards(f'Brisca cards/{card}.png')
 		player_label_3.config(image=player_image3)
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		player.append(card)
 		player_image4 = resize_cards(f'Brisca cards/{card}.png')
 		player_label_4.config(image=player_image4)
+		card = random.choice(deck)
+		# Remove Card From Deck
+		deck.remove(card)
+		# Append Card To Dealer List
+		player.append(card)
 		player_image5 = resize_cards(f'Brisca cards/{card}.png')
 		player_label_5.config(image=player_image5)
 		#player_label.config(text=card)
