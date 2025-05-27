@@ -15,7 +15,7 @@ def resize_cards(card):
 	our_card_img = Image.open(card)
 
 	# Resize The Image
-	our_card_resize_image = our_card_img.resize((150, 218))
+	our_card_resize_image = our_card_img.resize((110, 178))
 	
 	# output the card
 	global our_card_image
@@ -66,6 +66,8 @@ def shuffle():
 	global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
 	dealer_image1 = resize_cards(f'Brisca cards/{dealer_card}.png')
 	dealer_label_1.config(image=dealer_image1)
+
+	
 	dealer_card = random.choice(deck)
 	# Remove Card From Deck
 	deck.remove(dealer_card)
@@ -143,7 +145,7 @@ def shuffle():
 # Deal Out Cards
 def deal_cards():
 	try:
-		# Get the deler Card
+		# Get the dealer Card
 		card = random.choice(deck)
 		# Remove Card From Deck
 		deck.remove(card)
@@ -153,7 +155,7 @@ def deal_cards():
 		global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
 		dealer_image1 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_1.config(image=dealer_image1)
-		# Get the deler Card
+		# Get the dealer Card
 		card = random.choice(deck)
 		# Remove Card From Deck
 		deck.remove(card)
@@ -161,7 +163,7 @@ def deal_cards():
 		dealer.append(card)
 		dealer_image2 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_2.config(image=dealer_image2)
-		# Get the deler Card
+		# Get the dealer Card
 		card = random.choice(deck)
 		# Remove Card From Deck
 		deck.remove(card)
@@ -169,7 +171,7 @@ def deal_cards():
 		dealer.append(card)
 		dealer_image3 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_3.config(image=dealer_image3)
-		# Get the deler Card
+		# Get the dealer Card
 		card = random.choice(deck)
 		# Remove Card From Deck
 		deck.remove(card)
@@ -177,7 +179,7 @@ def deal_cards():
 		dealer.append(card)
 		dealer_image4 = resize_cards(f'Brisca cards/{card}.png')
 		dealer_label_4.config(image=dealer_image4)
-		# Get the deler Card
+		# Get the dealer Card
 		card = random.choice(deck)
 		# Remove Card From Deck
 		deck.remove(card)
@@ -242,42 +244,42 @@ my_frame.pack(pady=20)
 
 # Create Frames For Cards
 dealer_frame = LabelFrame(my_frame, text="Dealer", bd=0)
-dealer_frame.pack(padx=20, ipadx=20)
+dealer_frame.pack(padx=10, ipadx=10)
 
 player_frame = LabelFrame(my_frame, text="Player", bd=0)
-player_frame.pack(ipadx=20, pady=10)
+player_frame.pack(ipadx=10, pady=10)
 
 # Put Dealer cards in frames
 dealer_label_1 = Label(dealer_frame, text='')
-dealer_label_1.grid(row=0, column=0, pady=20, padx=20)
+dealer_label_1.grid(row=0, column=0, pady=10, padx=10)
 
 dealer_label_2 = Label(dealer_frame, text='')
-dealer_label_2.grid(row=0, column=1, pady=20, padx=20)
+dealer_label_2.grid(row=0, column=1, pady=10, padx=10)
 
 dealer_label_3 = Label(dealer_frame, text='')
-dealer_label_3.grid(row=0, column=2, pady=20, padx=20)
+dealer_label_3.grid(row=0, column=2, pady=10, padx=10)
 
 dealer_label_4 = Label(dealer_frame, text='')
-dealer_label_4.grid(row=0, column=3, pady=20, padx=20)
+dealer_label_4.grid(row=0, column=3, pady=10, padx=10)
 
 dealer_label_5 = Label(dealer_frame, text='')
-dealer_label_5.grid(row=0, column=4, pady=20, padx=20)
+dealer_label_5.grid(row=0, column=4, pady=10, padx=10)
 
 # Put Player cards in frames
 player_label_1 = Label(player_frame, text='')
-player_label_1.grid(row=1, column=0, pady=20, padx=20)
+player_label_1.grid(row=1, column=0, pady=10, padx=10)
 
 player_label_2 = Label(player_frame, text='')
-player_label_2.grid(row=1, column=1, pady=20, padx=20)
+player_label_2.grid(row=1, column=1, pady=10, padx=10)
 
 player_label_3 = Label(player_frame, text='')
-player_label_3.grid(row=1, column=2, pady=20, padx=20)
+player_label_3.grid(row=1, column=2, pady=10, padx=10)
 
 player_label_4 = Label(player_frame, text='')
-player_label_4.grid(row=1, column=3, pady=20, padx=20)
+player_label_4.grid(row=1, column=3, pady=10, padx=10)
 
 player_label_5 = Label(player_frame, text='')
-player_label_5.grid(row=1, column=4, pady=20, padx=20)
+player_label_5.grid(row=1, column=4, pady=10, padx=10)
 
 
 # Create a couple buttons
