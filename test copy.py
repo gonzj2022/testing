@@ -4,6 +4,15 @@ import random, time
 from PIL import Image, ImageTk
 
 
+class CallCounter:
+    def __init__(self, func):
+        self.func = func
+        self.call_count = 0
+
+    def __call__(self, *args, **kwargs):
+        self.call_count += 1
+        return self.func(*args, **kwargs)
+
 root = tk.Tk()
 root.title("TheCrafter6JGV.com - Card Deck")
 root.iconbitmap("images/brisca.ico")
@@ -27,6 +36,10 @@ player2_button3 = tk.Button(root)
 player2_button4 = tk.Button(root)
 player2_button5 = tk.Button(root)
 player2_button6 = tk.Button(root)
+player1_label = Label(root,text="Player 1 Turn")
+player2_label = Label(root,text="Player 2 Turn")
+winner_label = Label(root)
+#single_hand_winner = Label(root)
 winner_index = 0
 player1_played = 0
 player2_played = 0
@@ -50,21 +63,6 @@ def resize_cards(card):
 
 # Shuffle The Cards
 def shuffle():
-# Clear all the old cards from previous games
-#	player1_label_1.config(image='')
-#	player1_label_2.config(image='')
-#	player1_label_3.config(image='')
-#	player1_label_4.config(image='')
-#	player1_label_5.config(image='')
-#	player1_label_6.config(image='')
-
-#	player2_label_1.config(image='')
-#	player2_label_2.config(image='')
-#	player2_label_3.config(image='')
-#	player2_label_4.config(image='')
-#	player2_label_5.config(image='')
-#	player2_label_6.config(image='')
-
 	# Define Our Deck
 	suits = ["B", "C", "G", "S"]
 	values = range(1, 13)
@@ -89,7 +87,7 @@ def shuffle():
 	print(f"trump cards = {trump_cards}")
 
 	# Calling Global variables
-	global player1, trump_image
+	global player1, trump_image, player1_label, player2_label, shuffle_button,next_hand_button, winner_label
 	global player1_image1, player1_image2, player1_image3, player1_image4, player1_image5, player1_image6
 	global player2_image1, player2_image2, player2_image3, player2_image4, player2_image5, player2_image6
 	global player1_button1, player1_button2, player1_button3, player1_button4, player1_button5, player1_button6
@@ -104,42 +102,42 @@ def shuffle():
 	player1.append(player1_card)
 	# Output Card To Screen
 	player1_image1 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button1.config(image=player1_image1,width=90,height=145,command=lambda: player1_play(player1_button1,player1_image1))
+	player1_button1.config(image=player1_image1,width=90,height=145,command=lambda: player1_play(player1_button1,player1_image1),state=NORMAL)
 	
 	# Remove Card From Deck
 	player1_card = deck.pop(0)
 	# Append Card To player1 List
 	player1.append(player1_card)
 	player1_image2 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button2.config(image=player1_image2,width=90,height=145,command=lambda: player1_play(player1_button2,player1_image2))
+	player1_button2.config(image=player1_image2,width=90,height=145,command=lambda: player1_play(player1_button2,player1_image2),state=NORMAL)
 	
 	# Remove Card From Deck
 	player1_card = deck.pop(0)
 	# Append Card To player1 List
 	player1.append(player1_card)
 	player1_image3 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button3.config(image=player1_image3,width=90,height=145,command=lambda: player1_play(player1_button3,player1_image3))
+	player1_button3.config(image=player1_image3,width=90,height=145,command=lambda: player1_play(player1_button3,player1_image3),state=NORMAL)
 	
 	# Remove Card From Deck
 	player1_card = deck.pop(0)
 	# Append Card To player1 List
 	player1.append(player1_card)
 	player1_image4 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button4.config(image=player1_image4,width=90,height=145,command=lambda: player1_play(player1_button4,player1_image4))
+	player1_button4.config(image=player1_image4,width=90,height=145,command=lambda: player1_play(player1_button4,player1_image4),state=NORMAL)
 	
 	# Remove Card From Deck
 	player1_card = deck.pop(0)
 	# Append Card To player1 List
 	player1.append(player1_card)
 	player1_image5 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button5.config(image=player1_image5,width=90,height=145,command=lambda: player1_play(player1_button5,player1_image5))
+	player1_button5.config(image=player1_image5,width=90,height=145,command=lambda: player1_play(player1_button5,player1_image5),state=NORMAL)
 
 	# Remove Card From Deck
 	player1_card = deck.pop(0)
 	# Append Card To player1 List
 	player1.append(player1_card)
 	player1_image6 = resize_cards(f'Brisca cards/{player1_card}.png')
-	player1_button6.config(image=player1_image6,width=90,height=145,command=lambda: player1_play(player1_button6,player1_image6))
+	player1_button6.config(image=player1_image6,width=90,height=145,command=lambda: player1_play(player1_button6,player1_image6),state=NORMAL)
 
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
@@ -147,14 +145,14 @@ def shuffle():
 	player2.append(player2_card)
 	# Output Card To Screen
 	player2_image1 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button1.config(image=player2_image1,width=90,height=145,command=lambda: player2_play(player2_button1,player2_image1))
+	player2_button1.config(image=player2_image1,width=90,height=145,command=lambda: player2_play(player2_button1,player2_image1),state=NORMAL)
 	
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
 	# Append Card To player1 List
 	player2.append(player2_card)
 	player2_image2 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button2.config(image=player2_image2,width=90,height=145,command=lambda: player2_play(player2_button2,player2_image2))
+	player2_button2.config(image=player2_image2,width=90,height=145,command=lambda: player2_play(player2_button2,player2_image2),state=NORMAL)
 	
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
@@ -162,36 +160,43 @@ def shuffle():
 	# Append Card To player1 List
 	player2.append(player2_card)
 	player2_image3 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button3.config(image=player2_image3,width=90,height=145,command=lambda: player2_play(player2_button3,player2_image3))
+	player2_button3.config(image=player2_image3,width=90,height=145,command=lambda: player2_play(player2_button3,player2_image3),state=NORMAL)
 	
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
 	# Append Card To player1 List
 	player2.append(player2_card)
 	player2_image4 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button4.config(image=player2_image4,width=90,height=145,command=lambda: player2_play(player2_button4,player2_image4))
+	player2_button4.config(image=player2_image4,width=90,height=145,command=lambda: player2_play(player2_button4,player2_image4),state=NORMAL)
 	
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
 	# Append Card To player1 List
 	player2.append(player2_card)
 	player2_image5 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button5.config(image=player2_image5,width=90,height=145,command=lambda: player2_play(player2_button5,player2_image5))
+	player2_button5.config(image=player2_image5,width=90,height=145,command=lambda: player2_play(player2_button5,player2_image5),state=NORMAL)
 
 	# Remove Card From Deck
 	player2_card = deck.pop(0)
 	# Append Card To player1 List
 	player2.append(player2_card)
 	player2_image6 = resize_cards(f'Brisca cards/{player2_card}.png')
-	player2_button6.config(image=player2_image6,width=90,height=145,command=lambda: player2_play(player2_button6,player2_image6))
+	player2_button6.config(image=player2_image6,width=90,height=145,command=lambda: player2_play(player2_button6,player2_image6),state=NORMAL)
 
 	# Put number of remaining cards in title bar
 	root.title(f'TheCrafterJGV.com - {len(deck)} Cards Left - Player1 Points = {scores[0]} - Player2 Points = {scores[1]} ')
-
-
+	#Display Player 1 turn indication
+	player1_label.grid(row=0,column=6,pady=10,padx = 10)
+	shuffle_button.grid_forget()
+	next_hand_button.grid(row=1,column=3,pady=10)
+	player1_label.grid_forget()
+	player2_label.grid_forget()
+	next_hand_button.grid_forget()
+	winner_label.grid_forget()
+	
 # Deal Out Cards
-def deal_cards():
-	global deck, player1, player2
+def next_hand():
+	global deck, player1, player2, shuffle_button, next_hand_button, winner_index, winner_label
 	global player1_image1, player1_image2, player1_image3, player1_image4, player1_image5, player1_image6
 	global player2_image1, player2_image2, player2_image3, player2_image4, player2_image5, player2_image6
 	global player1_button1, player1_button2, player1_button3, player1_button4, player1_button5, player1_button6
@@ -291,23 +296,40 @@ def deal_cards():
 		# Put number of remaining cards in title bar
 		root.title(f'TheCrafterJGV.com - {len(deck)} Cards Left - Player1 Points = {scores[0]} - Player2 Points = {scores[1]} ')
 
+		next_hand_button.grid_forget()
+		end_hand.call_count = 0
+
 	#except:
 	else:
 		root.title(f'TheCrafterJGV - No Cards In Deck - Player1 Points = {scores[0]} - Player2 Points = {scores[1]}')
+		shuffle_button.grid(row=1, column=2, pady=10)
+		next_hand_button.grid_forget()
+		winner_label.config(text=f'Player {winner_index} Wins!')
+		winner_label.grid(row=1,column=5,pady=10)
 
+@CallCounter
 def end_hand():
-	global played_cards, player1_played, player2_played, scores, played_label_1
-	print("test")
-	print(played_cards)
+	global played_cards, player1_played, player2_played, scores, played_label_1, single_hand_winner
 	winner = hand_winner(played_cards)
 	round_score = sum(card_value(card) for card in played_cards)
 	scores[winner-1] += round_score
-	print(f"Player {winner} wins the round and earns {round_score} points!")
+	if winner == 1:
+		player1_label.config(text=f"Player 1 wins and earns {round_score} points!")
+		player1_label.grid(row=0,column=7,pady=10,padx = 10)
+		player2_label.grid_forget()
+	if winner == 2:
+		player2_label.config(text=f"Player 2 wins and earns {round_score} points!")
+		player2_label.grid(row=2,column=7,pady=10,padx = 10)
+		player1_label.grid_forget()
 	played_cards = []
 	player1_played = 0
 	player2_played = 0
 	root.title(f'TheCrafterJGV.com - {len(deck)} Cards Left - Player1 Points = {scores[0]} - Player2 Points = {scores[1]} ')
-	
+	end_hand_count = end_hand.call_count
+	print(f"count= {end_hand_count}")
+	if end_hand_count == 6:
+		next_hand_button.grid(row=1,column=3,pady=10)
+
 played_cards = []
 played_label_1 = Label(root,pady=10,padx=10)
 played_label_2 = Label(root,pady=10,padx=10)
@@ -316,8 +338,7 @@ empty_card = resize_cards(f'Brisca cards/cover.png')
 def player1_play(card_button, card_image):
 	global played_cards, winner_index, player1_played, first_play, player2_played, player1, played_label_1
 	global player1_button1, player1_button2, player1_button3, player1_button4, player1_button5, player1_button6
-	global empty_card
-	print(f"player 1 = {player1}")
+	
 	if first_play == 0 or winner_index ==1 or (winner_index == 2 and player2_played == 1):
 		played_label_1.config(image=card_image)
 		played_label_1.grid(row=1,column=6,pady=10,padx=10)
@@ -348,7 +369,6 @@ def player2_play(card_button,card_image):
 	global played_cards, winner_index, player2_played, first_play, player2, played_label_2, player1_played
 	global player2_button1, player2_button2, player2_button3, player2_button4, player2_button5, player2_button6
 	global empty_card, test
-	print(f"player 2 = {player2}")
 	
 	if (winner_index == 0 or (winner_index == 1 and player1_played == 1) or (winner_index == 2 and player2_played == 0 )) and first_play == 1:
 		played_label_2.config(image=card_image)
@@ -382,9 +402,10 @@ def card_value(card):
     return values.get(rank, 0)
 
 def hand_winner(hand):
-	global trump, trump_cards, winner_index
+	global trump, trump_cards, winner_index, hand_counter
 	player1_card = hand[0]
 	player2_card = hand[1]
+	hand_counter = 0
 	for i in range(1, len(hand)):
 		if player1_card in trump_cards and player2_card not in trump_cards:
 			print("ïnside if1")
@@ -421,6 +442,12 @@ def hand_winner(hand):
 			if (player1_card[0] != player2_card[0]) and winner_index == 2:
 				winner_index = 2
 				return winner_index
+			if (card_value(player1_card) == 0 and card_value(player2_card)==0) and (player1_card[0] == player2_card[0]):
+				if (player1_card[1] < player2_card[1]):
+					winner_index = 2
+				if (player1_card[1] > player2_card[1]):
+					winner_index = 1
+				return winner_index
 			if (player1_card[0] == player2_card[0]) and (card_value(player1_card) < card_value(player2_card)):
 				winner_index = 2
 				return winner_index
@@ -428,6 +455,7 @@ def hand_winner(hand):
 				winner_index = 1
 				return winner_index
 	return winner_index
+
 	
 
 my_frame = Frame(root, bg="green")
@@ -442,25 +470,25 @@ player1_button3.grid(row=0,column=2,pady=10,padx=10)
 player1_button4.grid(row=0,column=3,pady=10,padx=10)
 player1_button5.grid(row=0,column=4,pady=10,padx=10)
 player1_button6.grid(row=0,column=5,pady=10,padx=10)
-Player1_label = Label(root, text="Player 1")
-Player1_label.grid(row=0, column=6, pady=10, padx = 10)
+#player1_label = Label(root,text = "")
+#player1_label.grid(row=0,column=6,pady=10,padx = 10)
 
 # Put Player cards as buttons
 player2_button1.grid(row=2,column=0,pady=10,padx=10)
-player2_button2.grid(row=2, column=1, pady=10, padx=10)
-player2_button3.grid(row=2, column=2, pady=10, padx=10)
-player2_button4.grid(row=2, column=3, pady=10, padx=10)
-player2_button5.grid(row=2, column=4, pady=10, padx=10)
-player2_button6.grid(row=2, column=5, pady=10, padx=10)
-Player2_label = Label(root, text="Player 2")
-Player2_label.grid(row=2, column=6, pady=10, padx = 10)
+player2_button2.grid(row=2,column=1,pady=10,padx=10)
+player2_button3.grid(row=2,column=2,pady=10,padx=10)
+player2_button4.grid(row=2,column=3,pady=10,padx=10)
+player2_button5.grid(row=2,column=4,pady=10,padx=10)
+player2_button6.grid(row=2,column=5,pady=10,padx=10)
+#player2_label = Label(root,text="Player 2 Turn")
+#player2_label.grid(row=2, column=6, pady=10, padx = 10)
 
 # Create a couple buttons
-shuffle_button = Button(root, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
-shuffle_button.grid(row=1, column=2, pady=10)
+shuffle_button = Button(root, text="Shuffle Deck", command=shuffle)
+#shuffle_button.grid(row=1, column=2, pady=10)
 
-card_button = Button(root, text="Next Cards", font=("Helvetica", 14), command=deal_cards)
-card_button.grid(row=1,column=3)
+next_hand_button = Button(root, text="Next Hand", command=next_hand)
+#next_hand_button.grid(row=1,column=3)
 
 # Shuffle Deck On Start
 shuffle()
