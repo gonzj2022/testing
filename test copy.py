@@ -1,3 +1,9 @@
+"""
+Brisca card game done in python by Jeshua Gonzalez Valentin 
+Card assests(images) used are from https://nacho-martin.com/images/posts/naipes.png
+"""
+
+
 import tkinter as tk
 from tkinter import *
 import random
@@ -200,11 +206,12 @@ def shuffle():
 	
 # Deal Out Cards
 def next_hand():
-	global deck, player1, player2, shuffle_button, next_hand_button, winner_index, winner_label
+	global deck, player1, player2, shuffle_button, next_hand_button, winner_index, winner_label, first_play
 	global player1_image1, player1_image2, player1_image3, player1_image4, player1_image5, player1_image6
 	global player2_image1, player2_image2, player2_image3, player2_image4, player2_image5, player2_image6
 	global player1_button1, player1_button2, player1_button3, player1_button4, player1_button5, player1_button6
 	global player2_button1, player2_button2, player2_button3, player2_button4, player2_button5, player2_button6
+	global player1_played, player2_played, scores
 
 	#Reset Players Card List
 	player1.clear()
@@ -304,6 +311,12 @@ def next_hand():
 		#Display Winner
 		winner_label.config(text=f'Player {winner_index} Wins!')
 		winner_label.grid(row=1,column=5,pady=10)
+		#reset internal flags and score
+		first_play = 0
+		winner_index = 0
+		player1_played = 0
+		player2_played = 0
+		scores = [0,0]
 
 #Counts end_hand() calls
 @CallCounter
